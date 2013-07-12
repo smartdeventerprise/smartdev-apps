@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/select_anim"
+    android:padding="5dp" >
+
+    <ImageView
+        android:id="@+id/imagePoster"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/a" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/arrow" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imagePoster"
+        android:layout_toRightOf="@+id/imagePoster"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtMovieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title of the Movie"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="-4dp"
+                android:src="@drawable/clock" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1:00 &amp; 2:00"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action/Adventure"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/txtRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A-16"
+            android:textColor="#fff" />
+
+        <ImageView
+            android:id="@+id/image3d"
+            android:layout_width="30dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
