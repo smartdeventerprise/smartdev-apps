@@ -2,7 +2,7 @@ package com.moviemobile.adapter;
 
 import java.util.ArrayList;
 
-import com.moviefone.R;
+import com.moviemobile.R;
 import com.moviemobile.utils.MovieBean;
 
 

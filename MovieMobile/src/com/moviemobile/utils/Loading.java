@@ -15,8 +15,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.moviefone.R;
 import com.moviemobile.MainActivity;
+import com.moviemobile.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -65,29 +65,35 @@ public class getMovies extends AsyncTask<Void, Void,Integer>{
 	{
 		String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
 		
-		JSONArray movieJArr = new JSONArray(movieJSONString);
-		int movieCount = movieJArr.length();
-		for(int index = 0; index < movieCount; index ++) 
-		{
-			JSONObject movieJObj = movieJArr.getJSONObject(index);
-			
-			Bitmap bm = getImage(movieJObj.getString("image"));
-			
-			MovieBean mbean = new MovieBean();
-			
-			mbean.movieId = movieJObj.getInt("id");
-			mbean.movieTitle=movieJObj.getString("movie");
-			mbean.time=movieJObj.getString("time");
-			mbean.genre=movieJObj.getString("genre");
-			mbean.rating=movieJObj.getString("rating");
-			mbean.threeD=movieJObj.getString("3d");
-			mbean.bitmap = bm;
-			
-			list.add(mbean);
-			
-			}
+//		JSONArray movieJArr = new JSONArray(movieJSONString);
+//		int movieCount = movieJArr.length();
 		
-		Constant.movieObject.movieArray=list;
+		Constant.movieJsonArr = new JSONArray(movieJSONString);
+		
+		//String[] imageUrls;
+//		for(int index = 0; index < movieCount; index ++) 
+//		{
+//			JSONObject movieJObj = movieJArr.getJSONObject(index);
+//			
+//			//Bitmap bm = getImage(movieJObj.getString("image"));
+//			
+////			MovieBean mbean = new MovieBean();
+////			
+////			mbean.image=movieJObj.getString("image");
+////			mbean.movieId = movieJObj.getInt("id");
+////			mbean.movieTitle=movieJObj.getString("movie");
+////			mbean.time=movieJObj.getString("time");
+////			mbean.genre=movieJObj.getString("genre");
+////			mbean.rating=movieJObj.getString("rating");
+////			mbean.threeD=movieJObj.getString("3d");
+//			//mbean.bitmap = bm;
+//			
+//			//list.add(mbean);
+//			
+//			}
+		
+		//Constant.movieObject.movieArray=list;
+		
 	}
 	catch(Exception e)
 	{
@@ -135,19 +141,19 @@ public class getMovies extends AsyncTask<Void, Void,Integer>{
 
 
 
-
-	  protected Bitmap getImage(String... urls) {
-	      String urldisplay = urls[0];
-	      Bitmap mIcon11 = null;
-	      try {
-	        InputStream in = new java.net.URL(urldisplay).openStream();
-	        mIcon11 = BitmapFactory.decodeStream(in);
-	      } catch (Exception e) {
-	          System.out.println(e.getMessage());
-	          e.printStackTrace();
-	      }
-	      return mIcon11;
-	  }
+//
+//	  protected Bitmap getImage(String url) {
+//	      
+//	      Bitmap mIcon11 = null;
+//	      try {
+//	        InputStream in = new java.net.URL(url).openStream();
+//	        mIcon11 = BitmapFactory.decodeStream(in);
+//	      } catch (Exception e) {
+//	          System.out.println(e.getMessage());
+//	          e.printStackTrace();
+//	      }
+//	      return mIcon11;
+//	  }
 
 	
 	      

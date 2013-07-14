@@ -1,6 +1,6 @@
 package com.moviemobile;
 
-import com.moviefone.R;
+import com.moviemobile.R;
 
 
 import android.app.Activity;

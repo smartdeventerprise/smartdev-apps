@@ -1,6 +1,7 @@
 package com.moviemobile;
 
-import com.moviefone.R;
+import com.moviemobile.R;
+
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.os.Bundle;

@@ -9,8 +9,7 @@
         android:id="@+id/imagePoster"
         android:layout_width="75dp"
         android:layout_height="100dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/a" />
+        android:layout_marginRight="10dp" />
 
     <ImageView
         android:id="@+id/imageView2"
