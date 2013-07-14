@@ -55,6 +55,8 @@ public class Adapter extends BaseAdapter {
         try{
         JSONObject jObj = Constant.movieJsonArr.getJSONObject(position);
         
+        vi.setId(jObj.getInt("id"));
+        
         imageLoader.DisplayImage((jObj.getString("image")), image);
         
         title.setText(jObj.getString("movie"));
@@ -66,10 +68,13 @@ public class Adapter extends BaseAdapter {
         	System.out.println(e.getMessage());
         }
         
+       
+        
         vi.setOnClickListener(new OnClickListener() {
     		@Override
     		public void onClick(View v) {
     			
+    			Constant.selectedMovieId=v.getId();
     			Intent in = new Intent(activity,MovieDetails.class);
     			activity.startActivity(in);
     			
