@@ -3,7 +3,12 @@ package com.moviemobile.utils;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+
 public class Utils {
+	
+	private static ProgressDialog progressDialog;
     public static void CopyStream(InputStream is, OutputStream os)
     {
         final int buffer_size=1024;
@@ -20,4 +25,17 @@ public class Utils {
         }
         catch(Exception ex){}
     }
+    
+    public static void showProgressDialog(Context context, String message) {
+		progressDialog = new ProgressDialog(context);
+		progressDialog.setMessage(message);
+		progressDialog.setCancelable(false);
+		progressDialog.show();
+	}
+    
+    public static void closeProgressDialog(Context context)
+    {
+    	progressDialog.cancel();
+    }
+    
 }
