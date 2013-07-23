@@ -96,6 +96,7 @@ public class NowShowing extends Fragment {
 		{
 			
 			 adapter=new Adapter(getActivity());
+			 
 		     list.setAdapter(adapter);
 		     
 		     Utils.closeProgressDialog(context);

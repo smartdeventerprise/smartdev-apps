@@ -49,8 +49,11 @@ public class Adapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.now_showing_list_placeholder, null);
 
-        TextView title=(TextView)vi.findViewById(R.id.txtMovieTitle);;
+        TextView title=(TextView)vi.findViewById(R.id.txtMovieTitle);
         ImageView image=(ImageView)vi.findViewById(R.id.imagePoster);
+        TextView time = (TextView)vi.findViewById(R.id.txtTime);
+        TextView genre = (TextView)vi.findViewById(R.id.txtGenre);
+        TextView rating = (TextView)vi.findViewById(R.id.txtRating);
         
         try{
         JSONObject jObj = Constant.movieJsonArr.getJSONObject(position);
@@ -60,7 +63,9 @@ public class Adapter extends BaseAdapter {
         imageLoader.DisplayImage((jObj.getString("image")), image);
         
         title.setText(jObj.getString("movie"));
-        
+        time.setText(jObj.getString("time"));
+        genre.setText(jObj.getString("genre"));
+        rating.setText(jObj.getString("rating"));
         
         }
         catch(Exception e)
