@@ -1,5 +1,9 @@
 package com.moviemobile.utils;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.moviemobile.MovieDetails;
@@ -29,11 +33,45 @@ public class Adapter extends BaseAdapter {
         //data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         imageLoader=new ImageLoader(activity.getApplicationContext());
+        
+        Constant.movieFilterJsonArr = new JSONArray();
+        int movieCount = Constant.movieJsonArr.length();
+        
+        
+    
+	        for(int index = 0; index < movieCount; index ++) 
+			{
+	        	JSONObject jObj;
+				try {
+					jObj = Constant.movieJsonArr.getJSONObject(index);
+					
+					 switch(Constant.selectedCinema)
+			            {
+			            	case 0:
+			            		if((jObj.getString("Carib5")).equals("1"))
+			            			Constant.movieFilterJsonArr.put(jObj);
+			    			
+			            		break;
+			            	case 1:
+			            		if((jObj.getString("PalaceCine")).equals("1"))
+			            			Constant.movieFilterJsonArr.put(jObj);
+			    			
+			            		break;
+			            
+			            }
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	           
+        }
+        
+    
     }
 
     public int getCount() {
         //return data.length;
-        return Constant.movieJsonArr.length();
+        return Constant.movieFilterJsonArr.length();
     }
 
     public Object getItem(int position) {
@@ -49,6 +87,7 @@ public class Adapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.now_showing_list_placeholder, null);
 
+        
         TextView title=(TextView)vi.findViewById(R.id.txtMovieTitle);
         ImageView image=(ImageView)vi.findViewById(R.id.imagePoster);
         TextView time = (TextView)vi.findViewById(R.id.txtTime);
@@ -56,18 +95,25 @@ public class Adapter extends BaseAdapter {
         TextView rating = (TextView)vi.findViewById(R.id.txtRating);
         
         try{
-        JSONObject jObj = Constant.movieJsonArr.getJSONObject(position);
+        	JSONObject jObj = Constant.movieFilterJsonArr.getJSONObject(position);
+            
         
-        vi.setId(jObj.getInt("id"));
         
-        imageLoader.DisplayImage((jObj.getString("image")), image);
-        
-        title.setText(jObj.getString("movie"));
-        time.setText(jObj.getString("time"));
-        genre.setText(jObj.getString("genre"));
-        rating.setText(jObj.getString("rating"));
-        
+				        vi.setId(jObj.getInt("id"));
+				        
+				        
+				        
+				        imageLoader.DisplayImage((jObj.getString("image")), image);
+				        
+				        title.setText(jObj.getString("movie"));
+				        time.setText(jObj.getString("time"));
+				        genre.setText(jObj.getString("genre"));
+				        rating.setText(jObj.getString("rating"));
+		
+
         }
+        
+        
         catch(Exception e)
         {
         	System.out.println(e.getMessage());

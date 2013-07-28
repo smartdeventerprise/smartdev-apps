@@ -1,6 +1,7 @@
 package com.moviemobile;
 
 import com.moviemobile.R;
+import com.moviemobile.utils.Constant;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -92,8 +93,20 @@ public class MainActivity extends FragmentActivity implements
 		// When the given dropdown item is selected, show its contents in the
 		// container view.
 		
-		Fragment fragment = new NowShowing();
+		switch(position)
+		{
+		case 0:
+			Constant.selectedCinema =0;
+			
+			break;
 		
+		case 1:
+			Constant.selectedCinema =1;
+
+			break;
+		}
+		
+		Fragment fragment = new NowShowing();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.container, fragment).commit();
 		return true;

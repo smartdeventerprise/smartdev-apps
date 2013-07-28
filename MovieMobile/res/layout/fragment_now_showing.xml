@@ -17,7 +17,6 @@
             android:layout_marginBottom="2dp"
             android:background="#8DC331"
             android:paddingLeft="3dp"
-            android:text="Carib 5"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <ListView

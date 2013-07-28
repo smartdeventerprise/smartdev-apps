@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class NowShowing extends Fragment {
@@ -56,8 +57,22 @@ public class NowShowing extends Fragment {
 		
 		 list=(ListView) rootView.findViewById(R.id.listNowShowing);
 	       
-		
-		
+		 TextView txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
+		 switch(Constant.selectedCinema)
+	        {
+	        	case 0:
+	        	
+				txtCinema.setText("Carib");
+				break;
+	        case 1:
+	        	
+				txtCinema.setText("Palace Cineplex");
+				break;
+				
+				default:
+					txtCinema.setText("Cinema");
+					break;
+	        }
 		
 		
 		
