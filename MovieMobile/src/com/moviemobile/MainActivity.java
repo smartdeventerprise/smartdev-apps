@@ -3,6 +3,7 @@ package com.moviemobile;
 import com.moviemobile.R;
 import com.moviemobile.utils.Constant;
 
+import android.R.drawable;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -32,13 +33,16 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
 		setContentView(R.layout.activity_main);
 
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		//actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		actionBar.setTitle("Movie Mobile");
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setLogo(R.drawable.logo2);
 
 		// Set up the dropdown list navigation in the action bar.
 		actionBar.setListNavigationCallbacks(

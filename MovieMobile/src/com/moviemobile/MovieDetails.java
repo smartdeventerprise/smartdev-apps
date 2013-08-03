@@ -8,6 +8,7 @@ import com.moviemobile.utils.Constant;
 import com.moviemobile.utils.ImageLoader;
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -22,6 +23,12 @@ public class MovieDetails extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		ActionBar actionBar = getActionBar();
+		
+		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setLogo(R.drawable.logo2);
+		
 		setContentView(R.layout.movie_details);
 		
 		imageLoader=new ImageLoader(MovieDetails.this);
