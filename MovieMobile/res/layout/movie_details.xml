@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#1c1c1c" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -55,7 +56,7 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
-        android:background="#232323"
+        android:background="#35393f"
         android:padding="5dp" >
 
         <LinearLayout
