@@ -85,7 +85,7 @@ public class Adapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(R.layout.now_showing_list_placeholder, null);
+            vi = inflater.inflate(R.layout.movie_list_item, null);
 
         
         TextView title=(TextView)vi.findViewById(R.id.txtMovieTitle);
@@ -93,6 +93,7 @@ public class Adapter extends BaseAdapter {
         TextView time = (TextView)vi.findViewById(R.id.txtTime);
         TextView genre = (TextView)vi.findViewById(R.id.txtGenre);
         TextView rating = (TextView)vi.findViewById(R.id.txtRating);
+        ImageView image3D=(ImageView)vi.findViewById(R.id.image3d);
         
         try{
         	JSONObject jObj = Constant.movieFilterJsonArr.getJSONObject(position);
@@ -109,6 +110,11 @@ public class Adapter extends BaseAdapter {
 				        time.setText(jObj.getString("time"));
 				        genre.setText(jObj.getString("genre"));
 				        rating.setText(jObj.getString("rating"));
+				        
+				        if((jObj.getString("3d").equals("1")))
+				        {
+				        	image3D.setVisibility(View.VISIBLE);
+				        }
 		
 
         }

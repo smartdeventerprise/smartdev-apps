@@ -31,7 +31,7 @@ public class MovieAdapter extends ArrayAdapter<Object>{
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		if (v == null) {
-			v = inflater.inflate(R.layout.now_showing_list_placeholder, null);
+			v = inflater.inflate(R.layout.movie_list_item, null);
 		}
 		
 		mbean = (MovieBean) items.get(position);

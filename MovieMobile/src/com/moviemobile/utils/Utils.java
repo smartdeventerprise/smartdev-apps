@@ -5,6 +5,8 @@ import java.io.OutputStream;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class Utils {
 	
@@ -36,6 +38,11 @@ public class Utils {
     public static void closeProgressDialog(Context context)
     {
     	progressDialog.cancel();
+    }
+    
+    public static boolean isNetworkAvailable(Context context) 
+    {
+        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
     
 }

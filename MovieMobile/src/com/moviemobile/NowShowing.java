@@ -53,11 +53,17 @@ public class NowShowing extends Fragment {
 		
 		Utils.showProgressDialog(context, "Loading Movies");
 		
+		list=(ListView) rootView.findViewById(R.id.listNowShowing);
+		
+		if (Utils.isNetworkAvailable(context))
+		{
+		
 		new getMovies().execute();
 		
-		 list=(ListView) rootView.findViewById(R.id.listNowShowing);
+		 
 	       
 		 TextView txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
+		 txtCinema.setVisibility(View.VISIBLE);
 		 switch(Constant.selectedCinema)
 	        {
 	        	case 0:
@@ -75,7 +81,15 @@ public class NowShowing extends Fragment {
 	        }
 		
 		
+		}
 		
+		else
+		{
+			Utils.closeProgressDialog(context);
+			TextView txtError = (TextView) rootView.findViewById(R.id.txtError);
+			txtError.setVisibility(View.VISIBLE);
+			txtError.setText("No Internet Connection");
+		}
 		
 		return rootView;
 	}
