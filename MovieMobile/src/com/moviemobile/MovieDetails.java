@@ -11,6 +11,7 @@ import com.moviemobile.utils.ImageLoader;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,5 +69,12 @@ public class MovieDetails extends Activity {
 		
 		
 		
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.other, menu);
+		return true;
 	}
 }

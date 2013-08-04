@@ -42,9 +42,10 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginTop="2dp"
                 android:src="@drawable/clock" />
 
             <TextView

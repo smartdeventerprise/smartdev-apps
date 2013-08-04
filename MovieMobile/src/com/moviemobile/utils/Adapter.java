@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.moviemobile.MovieDetails;
+import com.moviemobile.NowShowing;
 import com.moviemobile.R;
 
 import android.app.Activity;
@@ -33,9 +34,18 @@ public class Adapter extends BaseAdapter {
         //data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         imageLoader=new ImageLoader(activity.getApplicationContext());
-        
-        Constant.movieFilterJsonArr = new JSONArray();
-        int movieCount = Constant.movieJsonArr.length();
+        int movieCount = 0;
+        try
+        {
+        	Constant.movieFilterJsonArr = new JSONArray();
+        	movieCount = Constant.movieJsonArr.length();
+        }
+        catch(Exception e)
+        {
+        	NowShowing.txtCinema.setVisibility(View.GONE);
+        	NowShowing.txtError.setVisibility(View.VISIBLE);
+        	
+        }
         
         
     
@@ -62,6 +72,9 @@ public class Adapter extends BaseAdapter {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					NowShowing.txtCinema.setVisibility(View.GONE);
+					NowShowing.txtError.setVisibility(View.VISIBLE);
+					
 				}
 	           
         }
@@ -107,7 +120,19 @@ public class Adapter extends BaseAdapter {
 				        imageLoader.DisplayImage((jObj.getString("image")), image);
 				        
 				        title.setText(jObj.getString("movie"));
-				        time.setText(jObj.getString("time"));
+				        
+				        switch(Constant.selectedCinema)
+				        {
+				        case 0:
+				        	time.setText(jObj.getString("carib_time"));
+				        	break;
+				        	
+				        case 1:
+				        	time.setText(jObj.getString("palCine_time"));
+				        	break;
+				        	
+				        }
+				        
 				        genre.setText(jObj.getString("genre"));
 				        rating.setText(jObj.getString("rating"));
 				        

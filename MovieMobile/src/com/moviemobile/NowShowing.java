@@ -37,6 +37,7 @@ public class NowShowing extends Fragment {
 
     ListView list;
     Adapter adapter;
+    public static TextView txtError, txtCinema;
     Context context;
 	
 	
@@ -50,7 +51,7 @@ public class NowShowing extends Fragment {
 				container, false);
 		
 		context = getActivity();
-		
+		txtError = (TextView) rootView.findViewById(R.id.txtError);
 		Utils.showProgressDialog(context, "Loading Movies");
 		
 		list=(ListView) rootView.findViewById(R.id.listNowShowing);
@@ -62,13 +63,13 @@ public class NowShowing extends Fragment {
 		
 		 
 	       
-		 TextView txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
+		 txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
 		 txtCinema.setVisibility(View.VISIBLE);
 		 switch(Constant.selectedCinema)
 	        {
 	        	case 0:
 	        	
-				txtCinema.setText("Carib");
+				txtCinema.setText("Carib 5");
 				break;
 	        case 1:
 	        	
@@ -86,9 +87,9 @@ public class NowShowing extends Fragment {
 		else
 		{
 			Utils.closeProgressDialog(context);
-			TextView txtError = (TextView) rootView.findViewById(R.id.txtError);
+			
 			txtError.setVisibility(View.VISIBLE);
-			txtError.setText("No Internet Connection");
+			
 		}
 		
 		return rootView;
@@ -139,40 +140,16 @@ public class NowShowing extends Fragment {
 		{
 			
 			String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
-			
-//			JSONArray movieJArr = new JSONArray(movieJSONString);
-//			int movieCount = movieJArr.length();
+
 			
 			Constant.movieJsonArr = new JSONArray(movieJSONString);
 			
-			//String[] imageUrls;
-//			for(int index = 0; index < movieCount; index ++) 
-//			{
-//				JSONObject movieJObj = movieJArr.getJSONObject(index);
-//				
-//				//Bitmap bm = getImage(movieJObj.getString("image"));
-//				
-////				MovieBean mbean = new MovieBean();
-////				
-////				mbean.image=movieJObj.getString("image");
-////				mbean.movieId = movieJObj.getInt("id");
-////				mbean.movieTitle=movieJObj.getString("movie");
-////				mbean.time=movieJObj.getString("time");
-////				mbean.genre=movieJObj.getString("genre");
-////				mbean.rating=movieJObj.getString("rating");
-////				mbean.threeD=movieJObj.getString("3d");
-//				//mbean.bitmap = bm;
-//				
-//				//list.add(mbean);
-//				
-//				}
-			
-			//Constant.movieObject.movieArray=list;
+
 			
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			Utils.closeProgressDialog(context);
 		}
 		
 			
@@ -207,6 +184,11 @@ public class NowShowing extends Fragment {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				Utils.closeProgressDialog(context);
+				
+				txtCinema.setVisibility(View.GONE);
+				txtError.setVisibility(View.VISIBLE);
+				
 			}
 			return responseString;
 		}
