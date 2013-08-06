@@ -91,7 +91,22 @@ public class MainActivity extends FragmentActivity implements
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.action_refresh:
+	    	Fragment fragment = new NowShowing();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container, fragment).commit();
+	        return true;
+	  
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
 		// When the given dropdown item is selected, show its contents in the
