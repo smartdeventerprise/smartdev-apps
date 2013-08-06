@@ -62,7 +62,7 @@ public class NowShowing extends Fragment {
 		{
 		
 		new getMovies().execute();
-		
+
 		 
 	       
 		 txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
@@ -84,15 +84,18 @@ public class NowShowing extends Fragment {
 //					txtCinema.setText("Cinema");
 //					break;
 //	        }
+		 }
+	
 		
 		
-		}
+		
 		
 		else
 		{
 			Utils.closeProgressDialog(context);
 			
 			txtError.setVisibility(View.VISIBLE);
+			txtError.setText("No Movies Found");
 			
 		}
 		
@@ -130,12 +133,21 @@ public class NowShowing extends Fragment {
 		@Override
 		protected void onPostExecute(Integer result)
 		{
-			
+			 if (Constant.movieJsonArr != null)
+			 {
 			 adapter=new Adapter(getActivity());
 			 
 		     list.setAdapter(adapter);
 		     
-		     Utils.closeProgressDialog(context);
+		    
+			 }
+			 else
+			 {
+				 txtCinema.setVisibility(View.GONE);
+				 txtError.setVisibility(View.VISIBLE);
+				txtError.setText("No Movies Found");
+			 } 
+			 Utils.closeProgressDialog(context);
 		}
 		
 		@Override
@@ -194,6 +206,7 @@ public class NowShowing extends Fragment {
 				
 				txtCinema.setVisibility(View.GONE);
 				txtError.setVisibility(View.VISIBLE);
+				txtError.setText("No Internet Connection");
 				
 			}
 			return responseString;

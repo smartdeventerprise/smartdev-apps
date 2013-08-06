@@ -29,7 +29,6 @@
             android:background="#EEEEEE"
             android:gravity="center_horizontal"
             android:paddingLeft="3dp"
-            android:text="No Internet Connection"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="14sp"
             android:visibility="gone" />

@@ -52,6 +52,9 @@ public class MainActivity extends FragmentActivity implements
 						android.R.id.text1, new String[] {
 								"Carib 5",
 								"Palace Cineplex",
+								"Palace Multiplex",
+								"Odeon Cineplex",
+								"Marquee Cayman"
 								 }), this);
 	}
 
@@ -115,12 +118,25 @@ public class MainActivity extends FragmentActivity implements
 		switch(position)
 		{
 		case 0:
-			Constant.selectedCinema =0;
+			Constant.selectedCinema =0; //Carib5
 			
 			break;
 		
 		case 1:
-			Constant.selectedCinema =1;
+			Constant.selectedCinema =1;//PalaceCine
+
+			break;
+		case 2:
+			Constant.selectedCinema =2;//PalaceMulti
+			
+			break;
+		
+		case 3:
+			Constant.selectedCinema =3;//Odeon
+
+			break;
+		case 4:
+			Constant.selectedCinema =4;//Marquee
 
 			break;
 		}

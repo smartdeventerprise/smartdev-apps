@@ -39,17 +39,20 @@ public class Adapter extends BaseAdapter {
         {
         	Constant.movieFilterJsonArr = new JSONArray();
         	movieCount = Constant.movieJsonArr.length();
+        	
+        
         }
         catch(Exception e)
         {
         	NowShowing.txtCinema.setVisibility(View.GONE);
         	NowShowing.txtError.setVisibility(View.VISIBLE);
+        	NowShowing.txtError.setText("No Internet Connection");
         	
         }
         
         
     
-	        for(int index = 0; index < movieCount; index ++) 
+	        for(int index = 0; index < movieCount; index ++) //filters the movie by cinema
 			{
 	        	JSONObject jObj;
 				try {
@@ -67,6 +70,23 @@ public class Adapter extends BaseAdapter {
 			            			Constant.movieFilterJsonArr.put(jObj);
 			    			
 			            		break;
+			            		
+			            	case 2:
+			            		if((jObj.getString("PalaceMulti")).equals("1"))
+			            			Constant.movieFilterJsonArr.put(jObj);
+			    			
+			            		break;
+			            	case 3:
+			            		if((jObj.getString("Odeon")).equals("1"))
+			            			Constant.movieFilterJsonArr.put(jObj);
+			    			
+			            		break;
+			            		
+			            	case 4:
+			            		if((jObj.getString("Marquee")).equals("1"))
+			            			Constant.movieFilterJsonArr.put(jObj);
+			    			
+			            		break;
 			            
 			            }
 				} catch (JSONException e) {
@@ -74,7 +94,7 @@ public class Adapter extends BaseAdapter {
 					e.printStackTrace();
 					NowShowing.txtCinema.setVisibility(View.GONE);
 					NowShowing.txtError.setVisibility(View.VISIBLE);
-					
+					NowShowing.txtError.setText("No Internet Connection");
 				}
 	           
         }
@@ -84,6 +104,12 @@ public class Adapter extends BaseAdapter {
 
     public int getCount() {
         //return data.length;
+    	if(Constant.movieFilterJsonArr.length() == 0)
+    	{
+    		NowShowing.txtCinema.setVisibility(View.GONE);
+			NowShowing.txtError.setVisibility(View.VISIBLE);
+			NowShowing.txtError.setText("No Movies Found");
+    	}
         return Constant.movieFilterJsonArr.length();
     }
 
@@ -121,7 +147,7 @@ public class Adapter extends BaseAdapter {
 				        
 				        title.setText(jObj.getString("movie"));
 				        
-				        switch(Constant.selectedCinema)
+				        switch(Constant.selectedCinema) //filters the movie times based on cinema
 				        {
 				        case 0:
 				        	time.setText(jObj.getString("carib_time"));
@@ -129,6 +155,18 @@ public class Adapter extends BaseAdapter {
 				        	
 				        case 1:
 				        	time.setText(jObj.getString("palCine_time"));
+				        	break;
+				        	
+				        case 2:
+				        	time.setText(jObj.getString("palMulti_time"));
+				        	break;
+				        	
+				        case 3:
+				        	time.setText(jObj.getString("odeon_time"));
+				        	break;
+				        	
+				        case 4:
+				        	time.setText(jObj.getString("marquee_time"));
 				        	break;
 				        	
 				        }
