@@ -29,7 +29,7 @@
         android:layout_below="@+id/linearLayout1"
         android:background="#535A64"
         android:orientation="vertical"
-        android:padding="5dp" >
+        android:paddingLeft="5dp" >
 
         <TextView
             android:id="@+id/txtDetTitle"

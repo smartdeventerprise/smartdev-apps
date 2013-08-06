@@ -42,7 +42,7 @@ public class MainActivity extends FragmentActivity implements
 		//actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setLogo(R.drawable.logo2);
+		//actionBar.setLogo(R.drawable.logo2);
 
 		// Set up the dropdown list navigation in the action bar.
 		actionBar.setListNavigationCallbacks(

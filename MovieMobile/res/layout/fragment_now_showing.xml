@@ -18,7 +18,7 @@
             android:background="#8DC331"
             android:paddingLeft="7dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:visibility="gone" />
 
         <TextView

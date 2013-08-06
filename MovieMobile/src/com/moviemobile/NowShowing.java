@@ -65,21 +65,23 @@ public class NowShowing extends Fragment {
 	       
 		 txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
 		 txtCinema.setVisibility(View.VISIBLE);
-		 switch(Constant.selectedCinema)
-	        {
-	        	case 0:
-	        	
-				txtCinema.setText("Carib 5");
-				break;
-	        case 1:
-	        	
-				txtCinema.setText("Palace Cineplex");
-				break;
-				
-				default:
-					txtCinema.setText("Cinema");
-					break;
-	        }
+		 
+		 txtCinema.setText("Now Showing");
+//		 switch(Constant.selectedCinema)
+//	        {
+//	        	case 0:
+//	        	
+//				txtCinema.setText("Carib 5");
+//				break;
+//	        case 1:
+//	        	
+//				txtCinema.setText("Palace Cineplex");
+//				break;
+//				
+//				default:
+//					txtCinema.setText("Cinema");
+//					break;
+//	        }
 		
 		
 		}
