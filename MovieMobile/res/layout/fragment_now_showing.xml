@@ -37,6 +37,8 @@
             android:id="@+id/listNowShowing"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:divider="#4c4b4b"
+            android:dividerHeight="1dp"
             android:background="#35393f" >
         </ListView>
     </LinearLayout>
