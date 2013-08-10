@@ -45,8 +45,9 @@ public class Adapter extends BaseAdapter {
         catch(Exception e)
         {
         	NowShowing.txtCinema.setVisibility(View.GONE);
-        	NowShowing.txtError.setVisibility(View.VISIBLE);
         	NowShowing.txtError.setText("No Internet Connection");
+        	NowShowing.txtError.setVisibility(View.VISIBLE);
+        	
         	
         }
         
@@ -93,8 +94,9 @@ public class Adapter extends BaseAdapter {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					NowShowing.txtCinema.setVisibility(View.GONE);
-					NowShowing.txtError.setVisibility(View.VISIBLE);
 					NowShowing.txtError.setText("No Internet Connection");
+					NowShowing.txtError.setVisibility(View.VISIBLE);
+					
 				}
 	           
         }

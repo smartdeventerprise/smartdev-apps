@@ -53,49 +53,24 @@ public class NowShowing extends Fragment {
 				container, false);
 		
 		context = getActivity();
+		
+		txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
 		txtError = (TextView) rootView.findViewById(R.id.txtError);
-		Utils.showProgressDialog(context, "Loading Movies");
+		Utils.showProgressDialog(context);
 		
 		list=(ListView) rootView.findViewById(R.id.listNowShowing);
 		
 		if (Utils.isNetworkAvailable(context))
-		{
-		
-		new getMovies().execute();
+		{		
+			new getMovies().execute();
+		}
 
-		 
-	       
-		 txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
-		 txtCinema.setVisibility(View.VISIBLE);
-		 
-		 txtCinema.setText("Now Showing");
-//		 switch(Constant.selectedCinema)
-//	        {
-//	        	case 0:
-//	        	
-//				txtCinema.setText("Carib 5");
-//				break;
-//	        case 1:
-//	        	
-//				txtCinema.setText("Palace Cineplex");
-//				break;
-//				
-//				default:
-//					txtCinema.setText("Cinema");
-//					break;
-//	        }
-		 }
-	
-		
-		
-		
-		
 		else
 		{
 			Utils.closeProgressDialog(context);
 			
 			txtError.setVisibility(View.VISIBLE);
-			txtError.setText("No Movies Found");
+			txtError.setText("No Internet Connection");
 			
 		}
 		
@@ -135,9 +110,13 @@ public class NowShowing extends Fragment {
 		{
 			 if (Constant.movieJsonArr != null)
 			 {
-			 adapter=new Adapter(getActivity());
-			 
-		     list.setAdapter(adapter);
+				 
+				 txtCinema.setVisibility(View.VISIBLE);
+				 
+				 txtCinema.setText("Now Showing");
+				 adapter=new Adapter(getActivity());
+				 
+			     list.setAdapter(adapter);
 		     
 		    
 			 }

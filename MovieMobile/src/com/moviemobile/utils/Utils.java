@@ -3,6 +3,8 @@ package com.moviemobile.utils;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.moviemobile.R;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -28,11 +30,15 @@ public class Utils {
         catch(Exception ex){}
     }
     
-    public static void showProgressDialog(Context context, String message) {
+    public static void showProgressDialog(Context context) {
 		progressDialog = new ProgressDialog(context);
-		progressDialog.setMessage(message);
-		progressDialog.setCancelable(false);
+		//progressDialog.setMessage(message);
 		progressDialog.show();
+		progressDialog.setContentView(R.layout.progress);
+		progressDialog.setCancelable(false);
+		
+		
+	
 	}
     
     public static void closeProgressDialog(Context context)
