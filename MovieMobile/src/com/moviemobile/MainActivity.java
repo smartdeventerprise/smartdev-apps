@@ -3,7 +3,6 @@ package com.moviemobile;
 import com.moviemobile.R;
 import com.moviemobile.utils.Constant;
 
-import android.R.drawable;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -11,15 +10,9 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.OnNavigationListener {
@@ -53,8 +46,8 @@ public class MainActivity extends FragmentActivity implements
 								"Carib 5",
 								"Palace Cineplex",
 								"Palace Multiplex",
-								"Odeon Cineplex",
-								"Marquee Cayman"
+								"Odeon Cineplex"/*,
+								"Marquee Cayman"*/
 								 }), this);
 	}
 
@@ -147,7 +140,8 @@ public class MainActivity extends FragmentActivity implements
 		return true;
 	}
 
-	
+
+
 	
 
 }

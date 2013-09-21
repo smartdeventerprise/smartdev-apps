@@ -3,7 +3,6 @@ package com.moviemobile.utils;
 import java.util.ArrayList;
 
 import android.graphics.Bitmap;
-import android.widget.ImageView;
 
 public class MovieBean {
 	

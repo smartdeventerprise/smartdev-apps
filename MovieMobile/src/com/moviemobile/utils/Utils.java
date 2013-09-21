@@ -8,7 +8,6 @@ import com.moviemobile.R;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 public class Utils {
 	
@@ -35,7 +34,7 @@ public class Utils {
 		//progressDialog.setMessage(message);
 		progressDialog.show();
 		progressDialog.setContentView(R.layout.progress);
-		progressDialog.setCancelable(false);
+		//progressDialog.setCancelable(false);
 		
 		
 	
