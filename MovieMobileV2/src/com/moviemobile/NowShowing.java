@@ -2,33 +2,48 @@ package com.moviemobile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.moviemobile.R;
 import com.moviemobile.utils.Adapter;
 import com.moviemobile.utils.Constant;
 import com.moviemobile.utils.MovieBean;
 import com.moviemobile.utils.Utils;
+import com.moviemobile.utils.XMLParser;
 
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class NowShowing extends Fragment {
@@ -92,6 +107,10 @@ public class NowShowing extends Fragment {
 //    };
 	
 	public class getMovies extends AsyncTask<Void, Void,Integer>{
+		
+		private final String TAG = getMovies.class.getSimpleName();
+		ArrayList<String> items = new ArrayList<String>();
+		
 		public getMovies()
 		{
 			
@@ -105,24 +124,24 @@ public class NowShowing extends Fragment {
 		@Override
 		protected void onPostExecute(Integer result)
 		{
-			 if (Constant.movieJsonArr != null)
-			 {
-				 
-				 txtCinema.setVisibility(View.VISIBLE);
-				 
-				 txtCinema.setText("Now Showing");
-				 adapter=new Adapter(getActivity());
-				 
-			     list.setAdapter(adapter);
-		     
-		    
-			 }
-			 else
-			 {
-				 txtCinema.setVisibility(View.GONE);
-				 txtError.setVisibility(View.VISIBLE);
-				txtError.setText("No Movies Found");
-			 } 
+//			 if (Constant.movieJsonArr != null)
+//			 {
+//				 
+//				 txtCinema.setVisibility(View.VISIBLE);
+//				 
+//				 txtCinema.setText("Now Showing");
+//				 adapter=new Adapter(getActivity());
+//				 
+//			     list.setAdapter(adapter);
+//		     
+//		    
+//			 }
+//			 else
+//			 {
+//				 txtCinema.setVisibility(View.GONE);
+//				 txtError.setVisibility(View.VISIBLE);
+//				txtError.setText("No Movies Found");
+//			 } 
 			 Utils.closeProgressDialog(context);
 		}
 		
@@ -133,10 +152,10 @@ public class NowShowing extends Fragment {
 		try
 		{
 			
-			String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
-
+			//String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
+			getXmlData(Constant.CARIB_MOVIES_URL);
 			
-			Constant.movieJsonArr = new JSONArray(movieJSONString);
+			//Constant.movieJsonArr = new JSONArray(movieJSONString);
 			
 
 			
@@ -151,6 +170,30 @@ public class NowShowing extends Fragment {
 		}
 		
 		
+		public void getXmlData (String url)
+		{
+			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
+	
+			 XMLParser parser = new XMLParser();
+			 String xml = parser.getXmlFromUrl(url);
+			 Document doc = parser.getDomElement(xml);
+			 NodeList nl = doc.getElementsByTagName("item");
+			 
+			 for (int i = 0; i < nl.getLength(); i++) 
+			 {
+	            // creating new HashMap
+	            HashMap<String, String> map = new HashMap<String, String>();
+	            Element e = (Element) nl.item(i);
+	            // adding each child node to HashMap key => value
+	            map.put("title", parser.getValue(e, "title"));
+	           
+
+	            // adding HashList to ArrayList
+	            exampleList.add(map);
+		     }
+		}
+		
+
 		
 		public String getResponseString (String url) 
 		{
