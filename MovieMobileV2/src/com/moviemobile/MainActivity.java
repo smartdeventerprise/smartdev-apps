@@ -43,10 +43,10 @@ public class MainActivity extends FragmentActivity implements
 				new ArrayAdapter<String>(getActionBarThemedContextCompat(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								"Carib 5",
+								"Now Showing"/*,
 								"Palace Cineplex",
 								"Palace Multiplex",
-								"Odeon Cineplex"/*,
+								"Odeon Cineplex",
 								"Marquee Cayman"*/
 								 }), this);
 	}
@@ -111,27 +111,27 @@ public class MainActivity extends FragmentActivity implements
 		switch(position)
 		{
 		case 0:
-			Constant.selectedCinema =0; //Carib5
+			//Constant.selectedCinema =0; //Carib5
 			
 			break;
 		
-		case 1:
-			Constant.selectedCinema =1;//PalaceCine
-
-			break;
-		case 2:
-			Constant.selectedCinema =2;//PalaceMulti
-			
-			break;
-		
-		case 3:
-			Constant.selectedCinema =3;//Odeon
-
-			break;
-		case 4:
-			Constant.selectedCinema =4;//Marquee
-
-			break;
+//		case 1:
+//			Constant.selectedCinema =1;//PalaceCine
+//
+//			break;
+//		case 2:
+//			Constant.selectedCinema =2;//PalaceMulti
+//			
+//			break;
+//		
+//		case 3:
+//			Constant.selectedCinema =3;//Odeon
+//
+//			break;
+//		case 4:
+//			Constant.selectedCinema =4;//Marquee
+//
+//			break;
 		}
 		
 		Fragment fragment = new NowShowing();

@@ -18,6 +18,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -124,24 +126,24 @@ public class NowShowing extends Fragment {
 		@Override
 		protected void onPostExecute(Integer result)
 		{
-//			 if (Constant.movieJsonArr != null)
-//			 {
-//				 
-//				 txtCinema.setVisibility(View.VISIBLE);
-//				 
-//				 txtCinema.setText("Now Showing");
-//				 adapter=new Adapter(getActivity());
-//				 
-//			     list.setAdapter(adapter);
-//		     
-//		    
-//			 }
-//			 else
-//			 {
-//				 txtCinema.setVisibility(View.GONE);
-//				 txtError.setVisibility(View.VISIBLE);
-//				txtError.setText("No Movies Found");
-//			 } 
+			 if (Constant.movieJsonArr != null)
+			 {
+				 
+				 //txtCinema.setVisibility(View.VISIBLE);
+				 
+				 //txtCinema.setText("Now Showing");
+				 adapter=new Adapter(getActivity());
+				 
+			     list.setAdapter(adapter);
+		     
+		    
+			 }
+			 else
+			 {
+				 //txtCinema.setVisibility(View.GONE);
+				 //txtError.setVisibility(View.VISIBLE);
+				//txtError.setText("No Movies Found");
+			 } 
 			 Utils.closeProgressDialog(context);
 		}
 		
@@ -173,7 +175,8 @@ public class NowShowing extends Fragment {
 		public void getXmlData (String url)
 		{
 			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
-	
+			 
+			 JSONArray jsonArr = new JSONArray();
 			 XMLParser parser = new XMLParser();
 			 String xml = parser.getXmlFromUrl(url);
 			 Document doc = parser.getDomElement(xml);
@@ -181,16 +184,29 @@ public class NowShowing extends Fragment {
 			 
 			 for (int i = 0; i < nl.getLength(); i++) 
 			 {
+				 JSONObject json = new JSONObject();
 	            // creating new HashMap
 	            HashMap<String, String> map = new HashMap<String, String>();
 	            Element e = (Element) nl.item(i);
 	            // adding each child node to HashMap key => value
-	            map.put("title", parser.getValue(e, "title"));
-	           
+//	            map.put("title", parser.getValue(e, "title"));
+//	            map.put("description", parser.getValue(e, "description"));
+	            
+	            try {
+					json.put("title", parser.getValue(e, "title"));
+					json.put("description", parser.getValue(e, "description"));
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 	            // adding HashList to ArrayList
-	            exampleList.add(map);
+	            //exampleList.add(map);
+	            jsonArr.put(json);
+	            
 		     }
+			 
+			 Constant.movieJsonArr = jsonArr;
 		}
 		
 
