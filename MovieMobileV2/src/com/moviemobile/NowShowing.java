@@ -53,7 +53,7 @@ public class NowShowing extends Fragment {
 
     ListView list;
     Adapter adapter;
-    public static TextView txtError, txtCinema;
+    public static TextView txtError;
     Context context;
 	
 	
@@ -68,7 +68,7 @@ public class NowShowing extends Fragment {
 		
 		context = getActivity();
 		
-		txtCinema = (TextView) rootView.findViewById(R.id.txtCinema);
+		
 		txtError = (TextView) rootView.findViewById(R.id.txtError);
 		Utils.showProgressDialog(context);
 		
@@ -239,7 +239,7 @@ public class NowShowing extends Fragment {
 				e.printStackTrace();
 				Utils.closeProgressDialog(context);
 				
-				txtCinema.setVisibility(View.GONE);
+				
 				txtError.setVisibility(View.VISIBLE);
 				txtError.setText("No Internet Connection");
 				
