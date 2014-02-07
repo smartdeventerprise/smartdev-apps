@@ -172,7 +172,7 @@ public class NowShowing extends Fragment {
 		
 		public void getXmlData (String url)
 		{
-			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
+			 ArrayList<HashMap<String, String>> movieList = new ArrayList<HashMap<String, String>>();
 	
 			 XMLParser parser = new XMLParser();
 			 String xml = parser.getXmlFromUrl(url);
@@ -186,10 +186,10 @@ public class NowShowing extends Fragment {
 	            Element e = (Element) nl.item(i);
 	            // adding each child node to HashMap key => value
 	            map.put("title", parser.getValue(e, "title"));
-	           
+	            map.put("showing", parser.getValue(e, "description"));
 
 	            // adding HashList to ArrayList
-	            exampleList.add(map);
+	            movieList.add(map);
 		     }
 		}
 		
