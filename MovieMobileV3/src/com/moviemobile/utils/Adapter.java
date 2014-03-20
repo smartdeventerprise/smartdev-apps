@@ -1,14 +1,10 @@
 package com.moviemobile.utils;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.moviemobile.MovieDetails;
-import com.moviemobile.NowShowing;
 import com.moviemobile.R;
 
-import android.R.string;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

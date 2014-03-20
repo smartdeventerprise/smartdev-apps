@@ -318,21 +318,6 @@ public class NowShowing extends Fragment {
 
 
 
-	//
-//		  protected Bitmap getImage(String url) {
-//		      
-//		      Bitmap mIcon11 = null;
-//		      try {
-//		        InputStream in = new java.net.URL(url).openStream();
-//		        mIcon11 = BitmapFactory.decodeStream(in);
-//		      } catch (Exception e) {
-//		          System.out.println(e.getMessage());
-//		          e.printStackTrace();
-//		      }
-//		      return mIcon11;
-//		  }
-
-		
 		      
 		
 		
