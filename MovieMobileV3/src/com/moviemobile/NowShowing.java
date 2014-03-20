@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.apache.http.HttpResponse;
@@ -178,33 +180,93 @@ public class NowShowing extends Fragment {
 			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
 			 
 			 JSONArray jsonArr = new JSONArray();
-
+			 JSONObject movieJson = new JSONObject();
+			 JSONObject movieJsonCheck = new JSONObject();
 			 XMLParser parser = new XMLParser();
 			 String xml = parser.getXmlFromUrl(url);
+			 String movieJSONString = "";
 			 Document doc = parser.getDomElement(xml);
 			 NodeList nl = doc.getElementsByTagName("item");
-			 
+			 String movieUrl="";
+			 String strYear="";
+			 String notFound = "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}";
 			 for (int i = 0; i < nl.getLength(); i++) 
 			 {
 				 JSONObject json = new JSONObject();
 	            // creating new HashMap
 	            HashMap<String, String> map = new HashMap<String, String>();
 	            Element e = (Element) nl.item(i);
-	            // adding each child node to HashMap key => value
-
-//	            map.put("title", parser.getValue(e, "title"));
-//	            map.put("description", parser.getValue(e, "description"));
+	            
+	            String title = parser.getValue(e, "title");
+	            title=title.replace(" (3D)" , "");
+	            title=title.replace(" " , "+");
+	            
+	            Calendar now = Calendar.getInstance();
+	            int year = now.get(Calendar.YEAR);
+	            strYear = String.valueOf(year);
+	            
+	            for(int m=0;m<=2;m++)
+	            {
+	            	strYear = String.valueOf(year);
+	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear;
+	            	movieJSONString = getResponseString(movieUrl);
+	            	try {
+	            		if(!movieJSONString.equals(notFound))
+	            		{
+	            			movieJson = new JSONObject(movieJSONString);
+	            			if((movieJson.getString("Type")).equals("movie") && !(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A"))
+	            				break;
+	            			else
+	            				year--;
+	            		}
+	            		else
+	            		{
+	            			year--;
+	            		}
+					} catch (JSONException e1) {
+						
+						e1.printStackTrace();
+					}
+	            }
+	            
 	            
 	            try {
+	            	if(!movieJSONString.equals(notFound))
+	            	{
+		            	
+		            	
+			            	json.put("poster",movieJson.getString("Poster"));
+							json.put("genre",movieJson.getString("Genre"));
+							json.put("release_date",movieJson.getString("Released"));
+							json.put("rating",movieJson.getString("imdbRating"));
+							json.put("runtime",movieJson.getString("Runtime"));
+							json.put("actors",movieJson.getString("Actors"));
+							json.put("synopsis",movieJson.getString("Plot"));
+		          
+	            	}
+	            	else
+	            	{
+	            		json.put("poster","");
+						json.put("genre","N/A");
+						json.put("release_date","N/A");
+						json.put("rating","N/A");
+						json.put("runtime","N/A");
+						json.put("actors","N/A");
+						json.put("synopsis","Movie details not found.");
+						
+	            	}
+	            	json.put("id", i);
 					json.put("title", parser.getValue(e, "title"));
 					json.put("description", parser.getValue(e, "description"));
+					
+					
+					
 				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
+
 					e1.printStackTrace();
 				}
 
-	            // adding HashList to ArrayList
-	            //exampleList.add(map);
+
 	            jsonArr.put(json);
 	            
 
