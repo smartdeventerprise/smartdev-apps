@@ -11,7 +11,7 @@ public class Constant {
 	public static int selectedMovieId = -1;
 	public static final String MOVIE_LIST_URL = "http://smartdeventerprise.com/moviemobile/get_movies.php";
 	public static final String CARIB_MOVIES_URL = "http://www.palaceamusement.com/generaterss.php?channel=schedule";
-	
+	public static final String COMING_SOON_URL = "http://www.palaceamusement.com/palace.dti?page=comingsoong";
 	public static int selectedCinema = -1;
 
 }

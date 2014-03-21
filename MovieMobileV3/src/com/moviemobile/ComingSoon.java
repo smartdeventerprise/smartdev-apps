@@ -51,7 +51,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class NowShowing extends Fragment {
+public class ComingSoon extends Fragment {
 	
 
     ListView list;
@@ -120,10 +120,6 @@ public class NowShowing extends Fragment {
 		{
 			
 		}
-		
-		
-		//private ArrayList<MovieBean> list = new ArrayList<MovieBean>();
-		
 
 		
 		@Override
@@ -131,10 +127,7 @@ public class NowShowing extends Fragment {
 		{
 			 if (Constant.movieJsonArr != null)
 			 {
-				 
-				 //txtCinema.setVisibility(View.VISIBLE);
-				 
-				 //txtCinema.setText("Now Showing");
+
 				 adapter=new Adapter(getActivity());
 				 
 			     list.setAdapter(adapter);
@@ -143,9 +136,7 @@ public class NowShowing extends Fragment {
 			 }
 			 else
 			 {
-				 //txtCinema.setVisibility(View.GONE);
-				 //txtError.setVisibility(View.VISIBLE);
-				//txtError.setText("No Movies Found");
+
 			 } 
 			 Utils.closeProgressDialog(context);
 		}
@@ -158,7 +149,7 @@ public class NowShowing extends Fragment {
 		{
 			
 			//String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
-			getXmlData(Constant.CARIB_MOVIES_URL);
+			getMovieData(Constant.COMING_SOON_URL);
 			
 			//Constant.movieJsonArr = new JSONArray(movieJSONString);
 			
@@ -175,7 +166,7 @@ public class NowShowing extends Fragment {
 		}
 		
 		
-		public void getXmlData (String url)
+		public void getMovieData (String url)
 		{
 
 			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
