@@ -1,8 +1,6 @@
 package com.moviemobile;
 
 import com.moviemobile.R;
-import com.pushbots.push.Pushbots;
-
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.os.Bundle;
