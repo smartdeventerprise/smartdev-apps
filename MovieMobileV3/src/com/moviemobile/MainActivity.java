@@ -17,13 +17,28 @@ import android.widget.ArrayAdapter;
 public class MainActivity extends FragmentActivity implements
 		ActionBar.OnNavigationListener {
 
+	static boolean active = false;
+	@Override
+	public void onStart() {
+	   super.onStart();
+	   active = true;
+	}
+	 
+	@Override
+	public void onStop() {
+	   super.onStop();
+	   active = false;
+	}
+	public static boolean isActive(){
+	    return active;
+	}
+	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
-	private String SENDER_ID = "119259985053";
-	private String PUSHBOTS_APPLICATION_ID = "532b05da1d0ab1f57c8b45c1";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +46,7 @@ public class MainActivity extends FragmentActivity implements
 		
 		
 		setContentView(R.layout.activity_main);
-		Pushbots.init(this, SENDER_ID,PUSHBOTS_APPLICATION_ID);
+		
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		//actionBar.setDisplayShowTitleEnabled(false);
