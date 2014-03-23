@@ -58,8 +58,8 @@ public class MainActivity extends FragmentActivity implements
 				new ArrayAdapter<String>(getActionBarThemedContextCompat(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								"Now Showing"/*,
-								"Palace Cineplex",
+								"Now Showing",
+								"Coming Soon"/*,
 								"Palace Multiplex",
 								"Odeon Cineplex",
 								"Marquee Cayman"*/
@@ -122,18 +122,20 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onNavigationItemSelected(int position, long id) {
 		// When the given dropdown item is selected, show its contents in the
 		// container view.
-		
+		Fragment fragment = null;
 		switch(position)
 		{
 		case 0:
-			//Constant.selectedCinema =0; //Carib5
+			fragment = new NowShowing();
+			
 			
 			break;
 		
-//		case 1:
-//			Constant.selectedCinema =1;//PalaceCine
-//
-//			break;
+		case 1:
+			fragment = new ComingSoon();
+			
+
+			break;
 //		case 2:
 //			Constant.selectedCinema =2;//PalaceMulti
 //			
@@ -149,9 +151,8 @@ public class MainActivity extends FragmentActivity implements
 //			break;
 		}
 		
-		Fragment fragment = new NowShowing();
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, fragment).commit();
+		.replace(R.id.container, fragment).commit();
 		return true;
 	}
 

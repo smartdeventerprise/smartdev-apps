@@ -11,11 +11,12 @@ public class HTMLparser {
 		 Document doc = null;
 		 
 		 try {
-			doc = Jsoup.connect("http://google.com").get();
+			doc = Jsoup.connect(url).get();
 		
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Error: "+e);
 			e.printStackTrace();
 		}
 		return doc;

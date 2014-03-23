@@ -23,16 +23,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 
 import com.moviemobile.R;
 import com.moviemobile.utils.Adapter;
 import com.moviemobile.utils.Constant;
+import com.moviemobile.utils.HTMLparser;
 import com.moviemobile.utils.MovieBean;
 import com.moviemobile.utils.Utils;
 import com.moviemobile.utils.XMLParser;
@@ -103,13 +102,7 @@ public class ComingSoon extends Fragment {
         super.onDestroy();
     }
     
-//    public OnClickListener listener=new OnClickListener(){
-//        @Override
-//        public void onClick(View arg0) {
-//            adapter.imageLoader.clearCache();
-//            adapter.notifyDataSetChanged();
-//        }
-//    };
+
 	
 	public class getMovies extends AsyncTask<Void, Void,Integer>{
 		
@@ -148,13 +141,8 @@ public class ComingSoon extends Fragment {
 		try
 		{
 			
-			//String movieJSONString = getResponseString(Constant.MOVIE_LIST_URL);
 			getMovieData(Constant.COMING_SOON_URL);
-			
-			//Constant.movieJsonArr = new JSONArray(movieJSONString);
-			
 
-			
 		}
 		catch(Exception e)
 		{
@@ -168,33 +156,25 @@ public class ComingSoon extends Fragment {
 		
 		public void getMovieData (String url)
 		{
-
-			 ArrayList<HashMap<String, String>> exampleList = new ArrayList<HashMap<String, String>>();
-			 
-			 JSONArray jsonArr = new JSONArray();
-			 JSONObject movieJson = new JSONObject();
-			 JSONObject movieJsonCheck = new JSONObject();
-			 XMLParser parser = new XMLParser();
-			 String xml = parser.getXmlFromUrl(url);
-			 String movieJSONString = "";
-			 Document doc = parser.getDomElement(xml);
-			 NodeList nl = doc.getElementsByTagName("item");
-			 String movieUrl="";
-			 String strYear="";
-			 String notFound = "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}";
-			 for (int i = 0; i < nl.getLength(); i++) 
-			 {
-				 JSONObject json = new JSONObject();
-	            // creating new HashMap
-	            HashMap<String, String> map = new HashMap<String, String>();
-	            Element e = (Element) nl.item(i);
-	            
-	            String title = parser.getValue(e, "title");
+			Document doc;
+			doc = HTMLparser.getDoc(url);
+			
+			JSONArray jsonArr = new JSONArray();
+			JSONObject movieJson = new JSONObject();
+			String movieJSONString = "";
+			String movieUrl="";
+			String strYear="";
+			String notFound = "{\"Response\":\"False\",\"Error\":\"Movie not found!\"}";
+			int i = 0;
+			Elements p = doc.select("p");
+			for (Element movie : p) {
+				
+				JSONObject json = new JSONObject();
+	           
+				String title = movie.text();
 	            title=title.replace(" (3D)" , "");
 	            title=title.replace(" " , "+");
-	            
-	      
-	            
+				
 	            Calendar now = Calendar.getInstance();
 	            int year = now.get(Calendar.YEAR);
 	            strYear = String.valueOf(year);
@@ -202,7 +182,7 @@ public class ComingSoon extends Fragment {
 	            for(int m=0;m<=2;m++)
 	            {
 	            	strYear = String.valueOf(year);
-	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear;
+	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear+"&plot=full";
 	            	movieJSONString = getResponseString(movieUrl);
 	            	try {
 	            		if(!movieJSONString.equals(notFound))
@@ -211,11 +191,11 @@ public class ComingSoon extends Fragment {
 	            			if((movieJson.getString("Type")).equals("movie") && !(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A"))
 	            				break;
 	            			else
-	            				year--;
+	            				year++;
 	            		}
 	            		else
 	            		{
-	            			year--;
+	            			year++;
 	            		}
 					} catch (JSONException e1) {
 						
@@ -249,9 +229,10 @@ public class ComingSoon extends Fragment {
 						
 	            	}
 	            	json.put("id", i);
-					json.put("title", parser.getValue(e, "title"));
-					json.put("description", parser.getValue(e, "description"));
+					json.put("title", movie.text());
+					json.put("description","");
 					
+					i++;
 					
 					
 				} catch (JSONException e1) {
@@ -259,52 +240,52 @@ public class ComingSoon extends Fragment {
 					e1.printStackTrace();
 				}
 
-
 	            jsonArr.put(json);
-	            
 
 		     }
-			 
-			 Constant.movieJsonArr = jsonArr;
+			 Constant.movieJsonArr = jsonArr; 
+	 
+			}
+		
 		}
 		
 
-		
-		public String getResponseString (String url) 
-		{
-			String responseString = "";
-			try {
-				// Setup the object that makes the http request
-				
-				HttpClient httpclient = new DefaultHttpClient();
-				HttpRequestBase request = new HttpGet(url);
-//				request.addHeader(Utils.getBasicAuthenticationHeader(context));
-//				request.addHeader("User-Agent", Constant.HTTP_USER_AGENT);
-				HttpResponse response = httpclient.execute(request);
-				StatusLine statusLine = response.getStatusLine();
-				
-				// If there was no error in the http request
-				if(statusLine.getStatusCode() == HttpStatus.SC_OK){
-					ByteArrayOutputStream out = new ByteArrayOutputStream();
-					response.getEntity().writeTo(out);
-					out.close();
-					responseString = out.toString();
-				} else {
-					response.getEntity().getContent().close();
-					//Log.i("getResponseString", responseString);
-					throw new IOException(statusLine.getReasonPhrase());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				Utils.closeProgressDialog(context);
-				
-				
-				txtError.setVisibility(View.VISIBLE);
-				txtError.setText("No Internet Connection");
-				
+	public String getResponseString (String url) 
+	{
+		String responseString = "";
+		try {
+			// Setup the object that makes the http request
+			
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpRequestBase request = new HttpGet(url);
+//			request.addHeader(Utils.getBasicAuthenticationHeader(context));
+//			request.addHeader("User-Agent", Constant.HTTP_USER_AGENT);
+			HttpResponse response = httpclient.execute(request);
+			StatusLine statusLine = response.getStatusLine();
+			
+			// If there was no error in the http request
+			if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				response.getEntity().writeTo(out);
+				out.close();
+				responseString = out.toString();
+			} else {
+				response.getEntity().getContent().close();
+				//Log.i("getResponseString", responseString);
+				throw new IOException(statusLine.getReasonPhrase());
 			}
-			return responseString;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Utils.closeProgressDialog(context);
+			
+			
+			txtError.setVisibility(View.VISIBLE);
+			txtError.setText("No Internet Connection");
+			
 		}
+		return responseString;
+	}
+		
 		
 		
 	}
@@ -319,4 +300,3 @@ public class ComingSoon extends Fragment {
 	
     
     
-}

@@ -211,7 +211,7 @@ public class NowShowing extends Fragment {
 	            for(int m=0;m<=2;m++)
 	            {
 	            	strYear = String.valueOf(year);
-	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear;
+	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear+"&plot=full";
 	            	movieJSONString = getResponseString(movieUrl);
 	            	try {
 	            		if(!movieJSONString.equals(notFound))
