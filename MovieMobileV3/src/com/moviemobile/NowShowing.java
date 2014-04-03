@@ -208,7 +208,7 @@ public class NowShowing extends Fragment {
 	            int year = now.get(Calendar.YEAR);
 	            strYear = String.valueOf(year);
 	            
-	            for(int m=0;m<=2;m++)
+	            for(int m=0;m<=1;m++)
 	            {
 	            	strYear = String.valueOf(year);
 	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear+"&plot=full";
@@ -221,10 +221,13 @@ public class NowShowing extends Fragment {
 	            				break;
 	            			else
 	            				year--;
+	            			movieJSONString=notFound;
+
 	            		}
 	            		else
 	            		{
 	            			year--;
+	            			movieJSONString=notFound;
 	            		}
 					} catch (JSONException e1) {
 						
