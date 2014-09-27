@@ -58,8 +58,8 @@ public class MainActivity extends FragmentActivity implements
 				new ArrayAdapter<String>(getActionBarThemedContextCompat(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								"Now Showing",
-								"Coming Soon"/*,
+								"Now Showing"/*,
+								"Coming Soon",
 								"Palace Multiplex",
 								"Odeon Cineplex",
 								"Marquee Cayman"*/

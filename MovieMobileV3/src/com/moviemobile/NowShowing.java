@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -200,8 +201,15 @@ public class NowShowing extends Fragment {
 	            
 	            String title = parser.getValue(e, "title");
 	            title=title.replace(" (3D)" , "");
-	            title=title.replace(" " , "+");
+	            try {
+					title=java.net.URLEncoder.encode(title, "UTF-8");
+				} catch (UnsupportedEncodingException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 	            
+	            //title=title.replace(" " , "+");
+	           
 	      
 	            
 	            Calendar now = Calendar.getInstance();
@@ -217,7 +225,13 @@ public class NowShowing extends Fragment {
 	            		if(!movieJSONString.equals(notFound))
 	            		{
 	            			movieJson = new JSONObject(movieJSONString);
-	            			if((movieJson.getString("Type")).equals("movie") && !(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A"))
+	            			int runtime = 0;
+	            			if (!(movieJson.getString("Runtime")).equals("N/A"))
+	            			{
+	            				String strRuntime = (movieJson.getString("Runtime")).replace(" min", "");
+	            				runtime = Integer.parseInt(strRuntime);
+	            			}
+	            			if((movieJson.getString("Type")).equals("movie") && !(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A") && runtime >50)
 	            				break;
 	            			else
 	            				year--;

@@ -45,7 +45,7 @@ public class Utils {
 		//progressDialog.setMessage(message);
 		progressDialog.show();
 		progressDialog.setContentView(R.layout.progress);
-		//progressDialog.setCancelable(false);
+		progressDialog.setCancelable(false);
 		
 		
 	
