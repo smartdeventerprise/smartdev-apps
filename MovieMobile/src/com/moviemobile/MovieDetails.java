@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class MovieDetails extends Activity {
 	
-	TextView title, genre, rDate,rated, runtime,cast,synopsis; 
+	TextView title, genre, rDate,rated, runtime,cast,synopsis,rating; 
 	ImageView poster;
 	public ImageLoader imageLoader; 
 	public String trailerUrl = "";
@@ -51,16 +51,17 @@ public class MovieDetails extends Activity {
 					genre = (TextView) findViewById(R.id.txtDetGenre);
 					poster = (ImageView) findViewById(R.id.imageDetPoster);
 					rDate = (TextView) findViewById(R.id.txtRDate);
-					rated = (TextView) findViewById(R.id.txtDetRated);
+					
 					runtime = (TextView) findViewById(R.id.txtRuntime);
 					cast = (TextView) findViewById(R.id.txtCast);
 					synopsis = (TextView) findViewById(R.id.txtSynopsis);
+					rating = (TextView) findViewById(R.id.txtRating);
 				
-					title.setText(jObj.getString("movie"));
+					title.setText(jObj.getString("title"));
 					genre.setText(jObj.getString("genre"));
-					imageLoader.DisplayImage((jObj.getString("image")), poster);
+					imageLoader.DisplayImage((jObj.getString("poster")), poster);
 					rDate.setText(jObj.getString("release_date"));
-					rated.setText(jObj.getString("rating"));
+					rating.setText(jObj.getString("rating"));
 					runtime.setText(jObj.getString("runtime"));
 					cast.setText(jObj.getString("actors"));
 					synopsis.setText(jObj.getString("synopsis"));

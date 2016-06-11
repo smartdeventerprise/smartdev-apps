@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<resources>
-	<drawable name="focused">#87a7bc</drawable>
-    <drawable name="selected">#87a7bc</drawable>
-    <drawable name="enabled">#000000</drawable>
-</resources>

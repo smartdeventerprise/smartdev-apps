@@ -85,7 +85,6 @@
                         android:id="@+id/txtRDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         android:textColor="#fff" />
                 </LinearLayout>
 
@@ -99,14 +98,13 @@
                         android:id="@+id/txtError"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="Rated"
+                        android:text="Runtime"
                         android:textColor="#8DC331" />
 
                     <TextView
-                        android:id="@+id/txtDetRated"
+                        android:id="@+id/txtRuntime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         android:textColor="#fff" />
                 </LinearLayout>
 
@@ -120,14 +118,13 @@
                         android:id="@+id/TextView"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:text="Runtime"
+                        android:text="IMDB Rating"
                         android:textColor="#8DC331" />
 
                     <TextView
-                        android:id="@+id/txtRuntime"
+                        android:id="@+id/txtRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
                         android:textColor="#fff" />
                 </LinearLayout>
             </LinearLayout>
@@ -144,7 +141,6 @@
                 android:id="@+id/txtCast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textColor="#fff" />
 
             <TextView
@@ -159,7 +155,6 @@
                 android:id="@+id/txtSynopsis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textColor="#fff" />
         </LinearLayout>
     </ScrollView>

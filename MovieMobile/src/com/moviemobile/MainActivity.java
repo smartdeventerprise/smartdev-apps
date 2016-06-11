@@ -1,7 +1,7 @@
 package com.moviemobile;
 
 import com.moviemobile.R;
-import com.moviemobile.utils.Constant;
+import com.pushbots.push.Pushbots;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -17,11 +17,28 @@ import android.widget.ArrayAdapter;
 public class MainActivity extends FragmentActivity implements
 		ActionBar.OnNavigationListener {
 
+	static boolean active = false;
+	@Override
+	public void onStart() {
+	   super.onStart();
+	   active = true;
+	}
+	 
+	@Override
+	public void onStop() {
+	   super.onStop();
+	   active = false;
+	}
+	public static boolean isActive(){
+	    return active;
+	}
+	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +46,7 @@ public class MainActivity extends FragmentActivity implements
 		
 		
 		setContentView(R.layout.activity_main);
-
+		
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		//actionBar.setDisplayShowTitleEnabled(false);
@@ -43,10 +60,10 @@ public class MainActivity extends FragmentActivity implements
 				new ArrayAdapter<String>(getActionBarThemedContextCompat(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								"Carib 5",
+								"Now Showing"/*,
 								"Palace Cineplex",
 								"Palace Multiplex",
-								"Odeon Cineplex"/*,
+								"Odeon Cineplex",
 								"Marquee Cayman"*/
 								 }), this);
 	}
@@ -111,27 +128,27 @@ public class MainActivity extends FragmentActivity implements
 		switch(position)
 		{
 		case 0:
-			Constant.selectedCinema =0; //Carib5
+			//Constant.selectedCinema =0; //Carib5
 			
 			break;
 		
-		case 1:
-			Constant.selectedCinema =1;//PalaceCine
-
-			break;
-		case 2:
-			Constant.selectedCinema =2;//PalaceMulti
-			
-			break;
-		
-		case 3:
-			Constant.selectedCinema =3;//Odeon
-
-			break;
-		case 4:
-			Constant.selectedCinema =4;//Marquee
-
-			break;
+//		case 1:
+//			Constant.selectedCinema =1;//PalaceCine
+//
+//			break;
+//		case 2:
+//			Constant.selectedCinema =2;//PalaceMulti
+//			
+//			break;
+//		
+//		case 3:
+//			Constant.selectedCinema =3;//Odeon
+//
+//			break;
+//		case 4:
+//			Constant.selectedCinema =4;//Marquee
+//
+//			break;
 		}
 		
 		Fragment fragment = new NowShowing();

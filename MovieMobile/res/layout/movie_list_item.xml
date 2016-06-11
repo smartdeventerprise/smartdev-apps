@@ -38,47 +38,14 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:src="@drawable/clock" />
-
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1:00 &amp; 2:00"
-                android:textColor="#fff" />
-
-        </LinearLayout>
-
         <TextView
-            android:id="@+id/txtGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Action/Adventure"
-            android:textColor="#fff" />
-
-        <TextView
-            android:id="@+id/txtRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A-16"
-            android:textColor="#fff" />
-
-        <ImageView
-            android:id="@+id/image3d"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:src="@drawable/threed"
-            android:visibility="invisible" />
+            android:id="@+id/txtDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Description"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
