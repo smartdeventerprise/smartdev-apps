@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtDateTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDF5DF"
+            android:padding="3dp"
+            android:text="Date Title"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        
+        <ListView
+            android:id="@+id/listWeeklyScheduleMovies"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="#4c4b4b"
+            android:dividerHeight="1dp"
+            android:background="#35393f" >
+        </ListView>
+
+    </LinearLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
+<fullyQualifiedTypeName name="com.moviemobile.WeeklyShedule"/>
+<fullyQualifiedTypeName name="org.jsoup.Jsoup"/>
+<fullyQualifiedTypeName name="org.jsoup.nodes.Document"/>
+<fullyQualifiedTypeName name="org.jsoup.nodes.Element"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="org.json.JSONException"/>
+<fullyQualifiedTypeName name="com.moviemobile.utils.WeeklyScheduleAdapter"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ScheduledExecutorService"/>
+<fullyQualifiedTypeName name="org.jsoup.select.Elements"/>
+<fullyQualifiedTypeName name="org.json.JSONArray"/>
+<fullyQualifiedTypeName name="com.moviemobile.R.id"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="android.widget.TextView"/>
+<fullyQualifiedTypeName name="com.moviemobile.utils.Constant"/>
+<fullyQualifiedTypeName name="android.widget.Spinner"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="android.widget.ArrayAdapter"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemSelectedListener"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="android.widget.LinearLayout"/>
+<fullyQualifiedTypeName name="android.R.color"/>
+<fullyQualifiedTypeName name="android.graphics.Color"/>
+</qualifiedTypeNameHistroy>

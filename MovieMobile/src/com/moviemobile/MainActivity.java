@@ -1,6 +1,7 @@
 package com.moviemobile;
 
 import com.moviemobile.R;
+import com.moviemobile.utils.Constant;
 import com.pushbots.push.Pushbots;
 
 import android.annotation.TargetApi;
@@ -60,8 +61,8 @@ public class MainActivity extends FragmentActivity implements
 				new ArrayAdapter<String>(getActionBarThemedContextCompat(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								"Now Showing"/*,
-								"Palace Cineplex",
+								"Showing Today",
+								"Weekly Schedule",/*
 								"Palace Multiplex",
 								"Odeon Cineplex",
 								"Marquee Cayman"*/
@@ -107,12 +108,20 @@ public class MainActivity extends FragmentActivity implements
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Fragment fragment = new Fragment();
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	    case R.id.action_refresh:
-	    	Fragment fragment = new NowShowing();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.container, fragment).commit();
+	    	if(Constant.selectedMenuItem == 0){
+		    	fragment = new NowShowing();
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.container, fragment).commit();
+	    	}
+			if(Constant.selectedMenuItem == 1){
+				fragment = new WeeklySchedule();
+				getSupportFragmentManager().beginTransaction()
+						.replace(R.id.container, fragment).commit();
+			}
 	        return true;
 	  
 	    default:
@@ -124,18 +133,24 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onNavigationItemSelected(int position, long id) {
 		// When the given dropdown item is selected, show its contents in the
 		// container view.
-		
+		Fragment fragment = new Fragment();
 		switch(position)
 		{
 		case 0:
-			//Constant.selectedCinema =0; //Carib5
+			Constant.selectedMenuItem = 0;
+			fragment = new NowShowing();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container, fragment).commit();
 			
 			break;
 		
-//		case 1:
-//			Constant.selectedCinema =1;//PalaceCine
-//
-//			break;
+		case 1:
+			Constant.selectedMenuItem = 1;
+			fragment = new WeeklySchedule();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.container, fragment).commit();
+
+			break;
 //		case 2:
 //			Constant.selectedCinema =2;//PalaceMulti
 //			
@@ -151,9 +166,7 @@ public class MainActivity extends FragmentActivity implements
 //			break;
 		}
 		
-		Fragment fragment = new NowShowing();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.container, fragment).commit();
+		
 		return true;
 	}
 

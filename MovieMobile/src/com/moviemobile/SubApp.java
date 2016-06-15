@@ -20,7 +20,7 @@ public class SubApp extends Application {
         PBCustom.titleId = R.id.title;
         PBCustom.messageId = R.id.message;
         PBCustom.iconId = R.id.image;
-        PBCustom.icondId = R.drawable.logo1;
+        PBCustom.icondId = R.drawable.logo4;
         Pushbots.getInstance().setNotificationBuilder(PBCustom);
         
 //        Intent in = new Intent(this,MainActivity.class);

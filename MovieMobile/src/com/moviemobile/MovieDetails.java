@@ -66,7 +66,7 @@ public class MovieDetails extends Activity {
 					cast.setText(jObj.getString("actors"));
 					synopsis.setText(jObj.getString("synopsis"));
 					
-					trailerUrl = (jObj.getString("trailer"));
+					//trailerUrl = (jObj.getString("trailer"));
 				}
 				
 			} catch (JSONException e) {

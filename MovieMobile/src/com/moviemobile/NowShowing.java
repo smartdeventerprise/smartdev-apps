@@ -208,13 +208,13 @@ public class NowShowing extends Fragment {
 	            for(int m=0;m<=2;m++)
 	            {
 	            	strYear = String.valueOf(year);
-	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear;
+	            	movieUrl ="http://www.omdbapi.com/?&t="+title+"&y="+strYear+"&type=movie";
 	            	movieJSONString = getResponseString(movieUrl);
 	            	try {
 	            		if(!movieJSONString.equals(notFound))
 	            		{
 	            			movieJson = new JSONObject(movieJSONString);
-	            			if((movieJson.getString("Type")).equals("movie") && !(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A"))
+	            			if(!(movieJson.getString("Plot")).equals("N/A") && !(movieJson.getString("Poster")).equals("N/A"))
 	            				break;
 	            			else
 	            				year--;

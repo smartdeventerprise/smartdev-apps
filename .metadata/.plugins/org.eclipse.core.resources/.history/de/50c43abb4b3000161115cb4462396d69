@@ -1,0 +1,104 @@
+package com.moviemobile.utils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.moviemobile.MovieDetails;
+import com.moviemobile.R;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class WeeklyScheduleAdapter extends BaseAdapter {
+    
+    private Activity activity;
+    //private String[] data;
+    private static LayoutInflater inflater=null;
+    public ImageLoader imageLoader; 
+    
+    
+    public WeeklyScheduleAdapter(Activity a) {
+        activity = a;
+        //data=d;
+        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        imageLoader=new ImageLoader(activity.getApplicationContext());
+
+        
+        
+
+        
+    
+    }
+
+    public int getCount() {
+
+    	return Constant.weeklyScheduleJsonArr.length();
+    }
+
+    public Object getItem(int position) {
+        return position;
+    }
+
+    public long getItemId(int position) {
+        return position;
+    }
+    
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View vi=convertView;
+        if(convertView==null)
+            vi = inflater.inflate(R.layout.weekly_schedule_list_item, null);
+
+        
+        
+        TextView dateTitle = (TextView) vi.findViewById(R.id.txtDateTitle);
+        ListView list = (ListView) vi.findViewById(R.id.listWeeklyScheduleMovies);
+        
+        try{
+
+			JSONObject jObj = Constant.weeklyScheduleJsonArr.getJSONObject(position);
+			
+			dateTitle.setText(jObj.getString("dateTitle"));
+
+			JSONArray jsonArrMovies = new JSONArray();
+			jsonArrMovies = jObj.getJSONArray("movies");
+			Constant.movieJsonArr = new JSONArray();
+			Constant.movieJsonArr = jsonArrMovies;
+			
+			Adapter adapter=new Adapter(activity);
+			list.setAdapter(adapter);
+
+
+        }
+        
+        
+        catch(Exception e)
+        {
+        	System.out.println(e.getMessage());
+        }
+        
+       
+        
+        vi.setOnClickListener(new OnClickListener() {
+    		@Override
+    		public void onClick(View v) {
+		
+
+    		}
+        
+        });
+        
+        return vi;
+    }
+    
+    
+}
