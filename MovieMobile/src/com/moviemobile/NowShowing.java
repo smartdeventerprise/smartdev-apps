@@ -29,13 +29,12 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.moviemobile.R;
 import com.moviemobile.utils.Adapter;
 import com.moviemobile.utils.Constant;
 import com.moviemobile.utils.MovieBean;
 import com.moviemobile.utils.Utils;
 import com.moviemobile.utils.XMLParser;
-
+import com.moviemobile.R;
 
 import android.content.Context;
 import android.os.AsyncTask;

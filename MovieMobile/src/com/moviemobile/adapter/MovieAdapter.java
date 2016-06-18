@@ -2,9 +2,8 @@ package com.moviemobile.adapter;
 
 import java.util.ArrayList;
 
-import com.moviemobile.R;
 import com.moviemobile.utils.MovieBean;
-
+import com.moviemobile.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

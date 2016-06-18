@@ -3,10 +3,9 @@ package com.moviemobile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.moviemobile.R;
 import com.moviemobile.utils.Constant;
 import com.moviemobile.utils.ImageLoader;
-
+import com.moviemobile.R;
 
 import android.app.ActionBar;
 import android.app.Activity;

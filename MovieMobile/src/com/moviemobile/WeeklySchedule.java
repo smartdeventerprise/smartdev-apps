@@ -24,6 +24,7 @@ import org.jsoup.select.Elements;
 import com.moviemobile.utils.Adapter;
 import com.moviemobile.utils.Constant;
 import com.moviemobile.utils.Utils;
+import com.moviemobile.R;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -180,7 +181,7 @@ public class WeeklySchedule extends Fragment {
 
 			JSONArray jsonArrSchedule = new JSONArray();
 			
-			JSONObject movieJson = new JSONObject();
+			
 			
 			Elements dates = new Elements();
 			Elements scheduleTables = new Elements();
@@ -209,10 +210,11 @@ public class WeeklySchedule extends Fragment {
 				Elements tbody = scheduleTables.get(i).getElementsByTag("tbody");
 				Elements trs = tbody.get(0).getElementsByTag("tr");
 				for (int mov = 0; mov < movies.size(); mov++) {
+					JSONObject movieJson = new JSONObject();
 					JSONObject jsonMovie = new JSONObject();
 					String title = movies.get(mov).text();
-					title = title.replace(" (3D)", "");
-					title = title.replace(" ", "+");
+					String titleForSearch = title.replace(" (3D)", "");
+					titleForSearch = titleForSearch.replace(" ", "+");
 	
 					Calendar now = Calendar.getInstance();
 					int year = now.get(Calendar.YEAR);
@@ -230,19 +232,23 @@ public class WeeklySchedule extends Fragment {
 					String desc = "Showing at: ";
 					if(!tds.get(2).text().isEmpty())
 						desc += "Carib 5 ("+tds.get(2).text();
-					if(!tds.get(2).text().isEmpty() && !tds.get(3).text().isEmpty())
+					if(!tds.get(2).text().isEmpty() && (!tds.get(3).text().isEmpty() || !tds.get(4).text().isEmpty()))
 						desc+="), ";
+					else if(!tds.get(2).text().isEmpty() && tds.get(3).text().isEmpty())
+						desc+=")";
 					if(!tds.get(3).text().isEmpty())
 						desc+="Palace Cineplex ("+tds.get(3).text();
 					if(!tds.get(3).text().isEmpty() && !tds.get(4).text().isEmpty())
 						desc+="), ";
+					else if(!tds.get(3).text().isEmpty() && tds.get(2).text().isEmpty()&& tds.get(4).text().isEmpty())
+						desc+=")";
 					if(!tds.get(4).text().isEmpty())
 						desc+="Palace Multiplex ("+tds.get(4).text()+")";
 					desc+="<BR><BR>Rating: "+rating+"<BR><BR>";				
 	
 					for (int m = 0; m <= 2; m++) {
 						strYear = String.valueOf(year);
-						movieUrl = "http://www.omdbapi.com/?&t=" + title + "&y=" + strYear + "&type=movie";
+						movieUrl = "http://www.omdbapi.com/?&t=" + titleForSearch + "&y=" + strYear + "&type=movie";
 						movieJSONString = getResponseString(movieUrl);
 						try {
 							if (!movieJSONString.equals(notFound)) {
@@ -283,7 +289,7 @@ public class WeeklySchedule extends Fragment {
 	
 						}
 						jsonMovie.put("id", mov);
-						jsonMovie.put("title",  movieJson.getString("Title"));
+						jsonMovie.put("title",  title);
 						jsonMovie.put("description", desc);
 						jsonArrMovies.put(jsonMovie);
 						

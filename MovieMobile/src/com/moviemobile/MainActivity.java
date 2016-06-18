@@ -1,7 +1,7 @@
 package com.moviemobile;
 
-import com.moviemobile.R;
 import com.moviemobile.utils.Constant;
+import com.moviemobile.R;
 import com.pushbots.push.Pushbots;
 
 import android.annotation.TargetApi;
